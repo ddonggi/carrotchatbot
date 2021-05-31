@@ -90,6 +90,49 @@ public class CarrotChatbot {
             payload.putFields("o2o", Value.newBuilder().setStructValue(o2o).build());
 
         }
+
+        else if (intentName.equals("find charge")) {
+            //Simple Response
+            displayText = "찾으시는 물품에 대해 평균 가격을 알려드립니다";
+            tts = "찾으시는 물품에 대해 평균 가격을 알려드립니다";
+            simpleResponse = o2oTemplate.makeSimpleResponse(displayText, tts);
+
+            //Basic Card
+            image = o2oTemplate.makeImage("https://actions.o2o.kr/content/new/Skylife-ServiceCenter/Ko/aipersonKo.gif", "Fallback 이미지");
+            description = "찾으시는 물품에 대해 평균 가격을 알려드립니다";
+            basicCard = o2oTemplate.makeBasicCard(null, null, description, image, null);
+
+            //Suggestions
+            suggestions = o2oTemplate.makeSuggestionChips("화면이 이상해요", "인터넷 연결 방법");
+
+            o2o.putFields("simpleResponse", Value.newBuilder().setStructValue(simpleResponse).build());
+            o2o.putFields("basicCard", Value.newBuilder().setStructValue(basicCard).build());
+            o2o.putFields("suggestions", Value.newBuilder().setListValue(suggestions).build());
+
+            payload.putFields("o2o", Value.newBuilder().setStructValue(o2o).build());
+        }
+
+        else if (intentName.equals("search goods")) {
+            //Simple Response
+            displayText = "물품 리스트를 불러옵니다.";
+            tts = "물품 리스트를 불러옵니다.";
+            simpleResponse = o2oTemplate.makeSimpleResponse(displayText, tts);
+
+            //Basic Card
+            image = o2oTemplate.makeImage("https://actions.o2o.kr/content/new/Skylife-ServiceCenter/Ko/aipersonKo.gif", "Fallback 이미지");
+            description = "물품 리스트를 불러옵니다.";
+            basicCard = o2oTemplate.makeBasicCard(null, null, description, image, null);
+
+            //Suggestions
+            suggestions = o2oTemplate.makeSuggestionChips("화면이 이상해요", "인터넷 연결 방법");
+
+            o2o.putFields("simpleResponse", Value.newBuilder().setStructValue(simpleResponse).build());
+            o2o.putFields("basicCard", Value.newBuilder().setStructValue(basicCard).build());
+            o2o.putFields("suggestions", Value.newBuilder().setListValue(suggestions).build());
+
+            payload.putFields("o2o", Value.newBuilder().setStructValue(o2o).build());
+        }
+
         try {
             jsonResponse = JsonFormat.printer().print(
                     WebhookResponse.newBuilder().setPayload(payload).build()
@@ -97,6 +140,8 @@ public class CarrotChatbot {
         } catch (InvalidProtocolBufferException e) {
             e.printStackTrace();
         }
+
+
 
         System.out.println("jsonResponse >>");
         System.out.println(jsonResponse);
