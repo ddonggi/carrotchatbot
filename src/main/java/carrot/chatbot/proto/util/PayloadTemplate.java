@@ -1,5 +1,9 @@
 package carrot.chatbot.proto.util;
 
+import com.google.protobuf.ListValue;
+import com.google.protobuf.Struct;
+import com.google.protobuf.Value;
+
 import java.util.ArrayList;
 
 public class PayloadTemplate {

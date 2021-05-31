@@ -1,6 +1,15 @@
 package carrot.chatbot.proto.dialogflow;
 
 import carrot.chatbot.proto.util.PayloadTemplate;
+import com.google.cloud.dialogflow.v2.WebhookRequest;
+import com.google.cloud.dialogflow.v2.WebhookResponse;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+import com.google.protobuf.InvalidProtocolBufferException;
+import com.google.protobuf.ListValue;
+import com.google.protobuf.Struct;
+import com.google.protobuf.Value;
+import com.google.protobuf.util.JsonFormat;
 
 public class CarrotChatbot {
     public static String makeResponse(String webhookRequest) {
@@ -45,14 +54,14 @@ public class CarrotChatbot {
             //Simple Response
             displayText = "안녕하세요.SKB 서비스 입니다. 무엇을 도와드릴까요?";
             tts = "안녕하세요.SKB 서비스 입니다. 무엇을 도와드릴까요?";
-            simpleResponse = o2oTemplate.makeSimpleResponse(displayText,tts);
+            simpleResponse = payloadTemplate.makeSimpleResponse(displayText,tts);
             //Basic Card
-            image = o2oTemplate.makeImage("https://actions.o2o.kr/content/new/Skylife-ServiceCenter/Ko/aipersonKo.gif","웰컴 이미지");
+            image = payloadTemplate.makeImage("https://actions.o2o.kr/content/new/Skylife-ServiceCenter/Ko/aipersonKo.gif","웰컴 이미지");
             description = "원하시는 서비스를 추천 키워드를 참고하셔서 말씀해 주세요.";
-            basicCard = o2oTemplate.makeBasicCard(null,null,description,image,null);
+            basicCard = payloadTemplate.makeBasicCard(null,null,description,image,null);
 
             //Suggestions
-            suggestions = o2oTemplate.makeSuggestionChips("chip1","chip2");
+            suggestions = payloadTemplate.makeSuggestionChips("chip1","chip2");
 
             o2o.putFields("simpleResponse", Value.newBuilder().setStructValue(simpleResponse).build());
             o2o.putFields("basicCard", Value.newBuilder().setStructValue(basicCard).build());
@@ -64,15 +73,15 @@ public class CarrotChatbot {
             //Simple Response
             displayText = "죄송합니다. 무슨 말씀을 하시는지 못알아 들었어요.추천 키워드를 참고하시고 다시 한번 말씀해 주시겠습니까?";
             tts = "죄송합니다. 무슨 말씀을 하시는지 못알아 들었어요.추천 키워드를 참고하시고 다시 한번 말씀해 주시겠습니까?";
-            simpleResponse = o2oTemplate.makeSimpleResponse(displayText, tts);
+            simpleResponse = payloadTemplate.makeSimpleResponse(displayText, tts);
 
             //Basic Card
-            image = o2oTemplate.makeImage("https://actions.o2o.kr/content/new/Skylife-ServiceCenter/Ko/aipersonKo.gif", "Fallback 이미지");
+            image = payloadTemplate.makeImage("https://actions.o2o.kr/content/new/Skylife-ServiceCenter/Ko/aipersonKo.gif", "Fallback 이미지");
             description = "죄송합니다. SK BroadBand 상담원에게 추천 키워드를 참고하시고 다시 말씀해 주세요.";
-            basicCard = o2oTemplate.makeBasicCard(null, null, description, image, null);
+            basicCard = payloadTemplate.makeBasicCard(null, null, description, image, null);
 
             //Suggestions
-            suggestions = o2oTemplate.makeSuggestionChips("화면이 이상해요", "인터넷 연결 방법");
+            suggestions = payloadTemplate.makeSuggestionChips("화면이 이상해요", "인터넷 연결 방법");
 
             o2o.putFields("simpleResponse", Value.newBuilder().setStructValue(simpleResponse).build());
             o2o.putFields("basicCard", Value.newBuilder().setStructValue(basicCard).build());
