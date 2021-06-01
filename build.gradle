@@ -23,6 +23,7 @@ dependencies {
 	implementation 'com.google.cloud:google-cloud-speech'
 	implementation 'com.google.cloud:google-cloud-texttospeech'
 	implementation 'com.google.protobuf:protobuf-java-util'
+	implementation 'org.jsoup:jsoup:1.13.1'
 }
 
 test {

@@ -46,7 +46,6 @@ public class CarrotChatbot {
         String displayText = "";
         String tts = "";
         String description = "";
-
         /*
          * Intent별 Template 작성
          */
@@ -91,40 +90,19 @@ public class CarrotChatbot {
 
         }
 
-        else if (intentName.equals("find charge")) {
+        else if (intentName.equals("Search Goods")) {
             //Simple Response
-            displayText = "찾으시는 물품에 대해 평균 가격을 알려드립니다";
-            tts = "찾으시는 물품에 대해 평균 가격을 알려드립니다";
-            simpleResponse = o2oTemplate.makeSimpleResponse(displayText, tts);
+            displayText = "찾으시는 물품 리스트를 불러옵니다.";
+            tts = "찾으시는 리스트를 불러옵니다.";
+            simpleResponse = payloadTemplate.makeSimpleResponse(displayText, tts);
 
             //Basic Card
-            image = o2oTemplate.makeImage("https://actions.o2o.kr/content/new/Skylife-ServiceCenter/Ko/aipersonKo.gif", "Fallback 이미지");
-            description = "찾으시는 물품에 대해 평균 가격을 알려드립니다";
-            basicCard = o2oTemplate.makeBasicCard(null, null, description, image, null);
-
-            //Suggestions
-            suggestions = o2oTemplate.makeSuggestionChips("화면이 이상해요", "인터넷 연결 방법");
-
-            o2o.putFields("simpleResponse", Value.newBuilder().setStructValue(simpleResponse).build());
-            o2o.putFields("basicCard", Value.newBuilder().setStructValue(basicCard).build());
-            o2o.putFields("suggestions", Value.newBuilder().setListValue(suggestions).build());
-
-            payload.putFields("o2o", Value.newBuilder().setStructValue(o2o).build());
-        }
-
-        else if (intentName.equals("search goods")) {
-            //Simple Response
-            displayText = "물품 리스트를 불러옵니다.";
-            tts = "물품 리스트를 불러옵니다.";
-            simpleResponse = o2oTemplate.makeSimpleResponse(displayText, tts);
-
-            //Basic Card
-            image = o2oTemplate.makeImage("https://actions.o2o.kr/content/new/Skylife-ServiceCenter/Ko/aipersonKo.gif", "Fallback 이미지");
+            image = payloadTemplate.makeImage("https://actions.o2o.kr/content/new/Skylife-ServiceCenter/Ko/aipersonKo.gif", "Fallback 이미지");
             description = "물품 리스트를 불러옵니다.";
-            basicCard = o2oTemplate.makeBasicCard(null, null, description, image, null);
+            basicCard = payloadTemplate.makeBasicCard(null, null, description, image, null);
 
             //Suggestions
-            suggestions = o2oTemplate.makeSuggestionChips("화면이 이상해요", "인터넷 연결 방법");
+            suggestions = payloadTemplate.makeSuggestionChips("화면이 이상해요", "인터넷 연결 방법");
 
             o2o.putFields("simpleResponse", Value.newBuilder().setStructValue(simpleResponse).build());
             o2o.putFields("basicCard", Value.newBuilder().setStructValue(basicCard).build());
@@ -133,6 +111,48 @@ public class CarrotChatbot {
             payload.putFields("o2o", Value.newBuilder().setStructValue(o2o).build());
         }
 
+        else if (intentName.equals("Prohibited Items")) {
+            //Simple Response
+            displayText = "판매금지 품목은 ooo,ooo, 등이 있습니다. 더 자세한 사항은 당근마켓 어플 또는 홈페이지에서 확인해 주세요.";
+            tts = "판매금지 품목은 ooo,ooo, 등이 있습니다. 더 자세한 사항은 당근마켓 어플 또는 홈페이지에서 확인해 주세요.";
+            simpleResponse = payloadTemplate.makeSimpleResponse(displayText, tts);
+
+            //Basic Card
+            image = payloadTemplate.makeImage("https://actions.o2o.kr/content/new/Skylife-ServiceCenter/Ko/aipersonKo.gif", "Fallback 이미지");
+            description = "물품 리스트를 불러옵니다.";
+            linkButtons = payloadTemplate.makeLinkButtons("<d>","<>");
+            basicCard = payloadTemplate.makeBasicCard(null, null, description, image, linkButtons);
+
+            //Suggestions
+            suggestions = payloadTemplate.makeSuggestionChips("화면이 이상해요", "인터넷 연결 방법");
+
+            o2o.putFields("simpleResponse", Value.newBuilder().setStructValue(simpleResponse).build());
+            o2o.putFields("basicCard", Value.newBuilder().setStructValue(basicCard).build());
+            o2o.putFields("suggestions", Value.newBuilder().setListValue(suggestions).build());
+
+            payload.putFields("o2o", Value.newBuilder().setStructValue(o2o).build());
+        }
+        else if (intentName.equals("account questions")) {
+            //Simple Response
+            displayText = "계정문의";
+            tts = "계정문의";
+            simpleResponse = payloadTemplate.makeSimpleResponse(displayText, tts);
+
+            //Basic Card
+            image = payloadTemplate.makeImage("https://actions.o2o.kr/content/new/Skylife-ServiceCenter/Ko/aipersonKo.gif", "Fallback 이미지");
+            description = "계정문의";
+            linkButtons = payloadTemplate.makeLinkButtons("<d>","<>");
+            basicCard = payloadTemplate.makeBasicCard(null, null, description, image, linkButtons);
+
+            //Suggestions
+            suggestions = payloadTemplate.makeSuggestionChips("화면이 이상해요", "인터넷 연결 방법");
+
+            o2o.putFields("simpleResponse", Value.newBuilder().setStructValue(simpleResponse).build());
+            o2o.putFields("basicCard", Value.newBuilder().setStructValue(basicCard).build());
+            o2o.putFields("suggestions", Value.newBuilder().setListValue(suggestions).build());
+
+            payload.putFields("o2o", Value.newBuilder().setStructValue(o2o).build());
+        }
         try {
             jsonResponse = JsonFormat.printer().print(
                     WebhookResponse.newBuilder().setPayload(payload).build()
