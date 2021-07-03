@@ -36,12 +36,12 @@ public class CarrotChatbot {
         Struct.Builder payload = Struct.newBuilder();
         Struct.Builder simpleResponse = Struct.newBuilder();
         Struct.Builder basicCard = Struct.newBuilder();
-        ListValue suggestions = ListValue.newBuilder().build();
+        ListValue.Builder suggestions = ListValue.newBuilder();
         Struct.Builder o2o = Struct.newBuilder();
         Struct.Builder carousel = Struct.newBuilder();
 
         Struct.Builder image = Struct.newBuilder();
-        ListValue linkButtons = ListValue.newBuilder().build();
+        ListValue.Builder linkButtons = ListValue.newBuilder();
 
         String displayText = "";
         String tts = "";
@@ -60,7 +60,7 @@ public class CarrotChatbot {
             basicCard = payloadTemplate.makeBasicCard(null,null,description,image,null);
 
             //Suggestions
-            suggestions = payloadTemplate.makeSuggestionChips("chip1","chip2");
+            suggestions = payloadTemplate.makeSuggestionChipsArr("chip1","chip2");
 
             o2o.putFields("simpleResponse", Value.newBuilder().setStructValue(simpleResponse).build());
             o2o.putFields("basicCard", Value.newBuilder().setStructValue(basicCard).build());
@@ -80,7 +80,7 @@ public class CarrotChatbot {
             basicCard = payloadTemplate.makeBasicCard(null, null, description, image, null);
 
             //Suggestions
-            suggestions = payloadTemplate.makeSuggestionChips("화면이 이상해요", "인터넷 연결 방법");
+            suggestions = payloadTemplate.makeSuggestionChipsArr("화면이 이상해요", "인터넷 연결 방법");
 
             o2o.putFields("simpleResponse", Value.newBuilder().setStructValue(simpleResponse).build());
             o2o.putFields("basicCard", Value.newBuilder().setStructValue(basicCard).build());
@@ -102,7 +102,7 @@ public class CarrotChatbot {
             basicCard = payloadTemplate.makeBasicCard(null, null, description, image, null);
 
             //Suggestions
-            suggestions = payloadTemplate.makeSuggestionChips("화면이 이상해요", "인터넷 연결 방법");
+            suggestions = payloadTemplate.makeSuggestionChipsArr("화면이 이상해요", "인터넷 연결 방법");
 
             o2o.putFields("simpleResponse", Value.newBuilder().setStructValue(simpleResponse).build());
             o2o.putFields("basicCard", Value.newBuilder().setStructValue(basicCard).build());
@@ -124,7 +124,7 @@ public class CarrotChatbot {
             basicCard = payloadTemplate.makeBasicCard(null, null, description, image, linkButtons);
 
             //Suggestions
-            suggestions = payloadTemplate.makeSuggestionChips("화면이 이상해요", "인터넷 연결 방법");
+            suggestions = payloadTemplate.makeSuggestionChipsArr("화면이 이상해요", "인터넷 연결 방법");
 
             o2o.putFields("simpleResponse", Value.newBuilder().setStructValue(simpleResponse).build());
             o2o.putFields("basicCard", Value.newBuilder().setStructValue(basicCard).build());
@@ -145,7 +145,7 @@ public class CarrotChatbot {
             basicCard = payloadTemplate.makeBasicCard(null, null, description, image, linkButtons);
 
             //Suggestions
-            suggestions = payloadTemplate.makeSuggestionChips("화면이 이상해요", "인터넷 연결 방법");
+            suggestions = payloadTemplate.makeSuggestionChipsArr("화면이 이상해요", "인터넷 연결 방법");
 
             o2o.putFields("simpleResponse", Value.newBuilder().setStructValue(simpleResponse).build());
             o2o.putFields("basicCard", Value.newBuilder().setStructValue(basicCard).build());
@@ -166,7 +166,7 @@ public class CarrotChatbot {
             basicCard = payloadTemplate.makeBasicCard(null, null, description, image, linkButtons);
 
             //Suggestions
-            suggestions = payloadTemplate.makeSuggestionChips("화면이 이상해요", "인터넷 연결 방법");
+            suggestions = payloadTemplate.makeSuggestionChipsArr("화면이 이상해요", "인터넷 연결 방법");
 
             o2o.putFields("simpleResponse", Value.newBuilder().setStructValue(simpleResponse).build());
             o2o.putFields("basicCard", Value.newBuilder().setStructValue(basicCard).build());
@@ -188,7 +188,7 @@ public class CarrotChatbot {
             basicCard = payloadTemplate.makeBasicCard(null, null, description, image, linkButtons);
 
             //Suggestions
-            suggestions = payloadTemplate.makeSuggestionChips("화면이 이상해요", "인터넷 연결 방법");
+            suggestions = payloadTemplate.makeSuggestionChipsArr("화면이 이상해요", "인터넷 연결 방법");
 
             o2o.putFields("simpleResponse", Value.newBuilder().setStructValue(simpleResponse).build());
             o2o.putFields("basicCard", Value.newBuilder().setStructValue(basicCard).build());
